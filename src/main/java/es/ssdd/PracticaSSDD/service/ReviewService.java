@@ -1,12 +1,13 @@
 package es.ssdd.PracticaSSDD.service;
 
 import es.ssdd.PracticaSSDD.entities.Review;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
-
+@Service
 public class ReviewService {
     private final Map<Long, Review> reviews = new HashMap<>();
     private final AtomicLong nextId = new AtomicLong();
