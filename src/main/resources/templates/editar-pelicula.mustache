@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editar Película</title>
+    </head>
+
+    <body>
+        <h1 class="header">Editar Película</h1>
+
+        <form action="/pelicula/editar" method="post">
+            <input id="id-pelicula" type="hidden" name="id" value="{{pelicula.id}}"/>
+            <h2>Edit Film</h2>
+            <div class="field">
+                <label>Nombre </label>
+                <input id="nombre-pelicula" type="text" name="nombre" value="{{pelicula.nombre}}" placeholder="El nombre" required/>
+            </div>
+            <br>
+            <div class="field">
+                <label>Género</label>
+                <input id="genero-pelicula" type="text" name="genero" value="{{pelicula.genero}}" placeholder="El género" required/>
+            </div>
+            <br>
+            <div class="field">
+                <label>Director</label>
+                <input id="director-pelicula" type="text" name="director" value="{{pelicula.director}}" placeholder="El director" required/>
+            </div>
+            <br>
+            <div class="field">
+                <label>Puntuacion</label>
+                <input id="puntuacion-pelicula" type="number" name="puntuacion" value="{{pelicula.puntuacion}}" placeholder="La puntuación" required/>
+            </div>
+            <p>
+                <button onclick="location.href='/peliculas/detalles/{{pelicula.id}}'; return true;">Cancel</button>
+                <input type="submit" id="Save" value="Save" />
+            </p>
+        </form>
+
+    </body>
+</html>

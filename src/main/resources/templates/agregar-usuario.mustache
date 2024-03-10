@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agregar Usuario</title>
+    </head>
+
+    <body>
+    <h1 class="header">Agregar Usuario</h1>
+
+        <form action="/usuario/agregar" method="post">
+            <h2>New User</h2>
+            <div class="field">
+                <label>Nombre </label>
+                <input id="nombre-usuario" type="text" name="nombre" placeholder="El nombre" required/>
+            </div>
+            <br>
+            <div class="field">
+                <label>Email</label>
+                <input id="email-usuario" type="email" name="email" placeholder="El email" required/>
+            </div>
+            <p>
+                <button onclick="location.href='/'; return false;">Cancel</button>
+                <input type="submit" id="Save" value="Save"/>
+            </p>
+        </form>
+
+    </body>
+</html>

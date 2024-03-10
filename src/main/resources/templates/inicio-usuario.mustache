@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inicio Usuario</title>
+    </head>
+
+    <body>
+    <h1 class="header">Inicio Usuario</h1>
+
+    <form action="/" method="post">
+        <h2>Home</h2>
+        <div class="field">
+            <label>Nombre </label>
+            <input id="nombre-usuario" type="text" name="nombre" placeholder="El nombre" />
+        </div>
+        <br>
+        <div class="field">
+            <label>Email</label>
+            <input id="email-usuario" type="email" name="email" placeholder="El email" />
+        </div>
+        <p>
+            <input type="submit" id="Save" value="Acceder"/>
+            <button onclick="location.href='/usuario/agregar'; return false;">Registrar</button>
+            <br><br>
+            <button onclick="location.href='/usuarios'; return false;">Lista de Usuarios</button>
+        </p>
+    </form>
+
+    </body>
+</html>

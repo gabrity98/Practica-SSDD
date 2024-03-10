@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agregar Película</title>
+    </head>
+
+    <body>
+        <h1 class="header">Agregar Película</h1>
+
+        <form action="/pelicula/agregar" method="post">
+            <h2>New Film</h2>
+            <div class="field">
+                <label>Nombre </label>
+                <input id="nombre-pelicula" type="text" name="nombre" placeholder="El nombre" required/>
+            </div>
+            <br>
+            <div class="field">
+                <label>Género</label>
+                <input id="genero-pelicula" type="text" name="genero" placeholder="El género" required/>
+            </div>
+            <br>
+            <div class="field">
+                <label>Director</label>
+                <input id="director-pelicula" type="text" name="director" placeholder="El director" required/>
+            </div>
+            <br>
+            <div class="field">
+                <label>Puntuacion</label>
+                <input id="puntuacion-pelicula" type="number" name="puntuacion" placeholder="La puntuación" required/>
+            </div>
+            <br>
+            <p>
+                <button onclick="location.href='/peliculas'; return false;">Cancel</button>
+                <input type="submit" id="Save" value="Save"/>
+            </p>
+        </form>
+
+    </body>
+</html>
