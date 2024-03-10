@@ -29,7 +29,7 @@ public class PeliculaController {
     @PostMapping("/pelicula/agregar")
     public String agregarPelicula(Pelicula pelicula){
         peliculaService.crearPelicula(pelicula);
-        return "redirect/peliculas";
+        return "redirect:/peliculas";
     }
 
     @GetMapping("/pelicula/editar/{id}")
@@ -37,7 +37,7 @@ public class PeliculaController {
         Pelicula pelicula = peliculaService.getPelicula(id);
         if (pelicula == null)
             return "redirect:/peliculas";
-        model.addAttribute("pelicula",id);
+        model.addAttribute("pelicula",pelicula);
         return "editar-pelicula";
     }
 
