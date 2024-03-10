@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Reviews</title>
+    </head>
+
+    <body>
+        <h1 class="header">All Reviews</h1>
+
+        <div id="reviews">
+            {{^reviews}}
+                <h3>Sin reviews</h3>
+            {{/reviews}}
+            {{#reviews}}
+                <a href="/review/detalles/{{id}}">{{autor}} {{puntuacion}}</a><br>
+            {{/reviews}}
+        </div>
+        <br>
+
+        <button id="back" onclick="location.href='/peliculas'">Back</button>
+        <button id="create-review" onclick="location.href='/review/agregar'">New Review</button>
+    </body>
+</html>
