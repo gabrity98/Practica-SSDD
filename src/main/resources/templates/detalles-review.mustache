@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Detalles Review</title>
+    </head>
+
+    <body>
+        <h1 class="header">{{review.autor}}</h1>
+        {{review.contenido}}
+        <h2 class="header">{{review.puntuacion}}</h2>
+
+        <p>
+            <button id="remove-review" onclick="location.href='/review/eliminar/{{review.id}}'">Remove</button>
+            <button id="edit-review" onclick="location.href='/review/editar/{{review.id}}'">Edit</button>
+            <br><br>
+            <button id="reviews" onclick="location.href='/'">Home</button>
+        </p>
+
+    </body>
+</html>

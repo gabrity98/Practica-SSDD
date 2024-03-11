@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Agregar Review</title>
+    </head>
+
+    <body>
+    <h1 class="header">Agregar Review</h1>
+
+    <form action="/review/agregar" method="post">
+        <h2>New Review</h2>
+        <div class="field">
+            <label>Autor </label>
+            <input id="autor-review" type="text" name="autor" placeholder="El autor" required/>
+        </div>
+        <br>
+        <div class="field">
+            <label>Contenido </label>
+            <textarea id="contenido-review" name="contenido" placeholder="El contenido" required></textarea>
+        </div>
+        <br>
+        <div class="field">
+            <label>Puntuacion </label>
+            <input id="puntuacion-review" type="number" name="puntuacion" placeholder="La puntuacion" required/>
+        </div>
+        <p>
+            <button onclick="location.href='/reviews'; return false;">Cancel</button>
+            <input type="submit" id="Save" value="Save"/>
+        </p>
+    </form>
+
+    </body>
+</html>

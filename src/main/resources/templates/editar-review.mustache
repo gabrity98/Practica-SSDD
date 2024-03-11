@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editar Review</title>
+    </head>
+
+    <body>
+    <h1 class="header">Editar Review</h1>
+
+    <form action="/review/editar" method="post">
+        <input id="id-review" type="hidden" name="id" value="{{review.id}}"/>
+        <h2>Edit Review</h2>
+        <div class="field">
+            <label>Autor </label>
+            <input id="autor-review" type="text" name="autor" value="{{review.autor}}" placeholder="El autor" required/>
+        </div>
+        <br>
+        <div class="field">
+            <label>Contenido </label>
+            <textarea id="contenido-review" name="contenido" value="{{review.contenido}}" placeholder="El contenido" required></textarea>
+        </div>
+        <br>
+        <div class="field">
+            <label>Puntuacion </label>
+            <input id="puntuacion-review" type="number" name="puntuacion" value="{{review.puntuacion}}" placeholder="La puntuacion" required/>
+        </div>
+        <p>
+            <button onclick="location.href='/review/detalles/{{review.id}}'; return true;">Cancel</button>
+            <input type="submit" id="Save" value="Save" />
+        </p>
+    </form>
+
+    </body>
+</html>

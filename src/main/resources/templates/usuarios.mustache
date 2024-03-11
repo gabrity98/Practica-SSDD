@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Usuarios</title>
+    </head>
+
+    <body>
+        <h1 class="header">All Users</h1>
+
+        <div id="users">
+            {{^usuarios}}
+                <h3>Sin usuarios</h3>
+            {{/usuarios}}
+            {{#usuarios}}
+                <a class="nombre" href="/usuario/detalles/{{id}}">{{nombre}} </a><br>
+            {{/usuarios}}
+        </div>
+        <br>
+
+    <button id="back" onclick="location.href='/'">Back</button>
+    </body>
+</html>

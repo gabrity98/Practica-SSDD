@@ -38,4 +38,14 @@ public class UsuarioService {
     public void eliminarUsuario(Long id){
         usuarios.remove(id);
     }
+
+    public Usuario comprobarUsuario(String nombre, String email){
+        for (Usuario usuarioAux: usuarios.values()) {
+            if (usuarioAux.getNombre().equals(nombre) && usuarioAux.getEmail().equals(email)) {
+                return usuarioAux;
+            }
+        }
+
+        return null;
+    }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Detalles Película</title>
+    </head>
+
+    <body>
+    <h1 class="header">{{pelicula.nombre}}</h1>
+
+    <div id="films">
+            <span class="genero">{{pelicula.genero}}</span>
+            <br>
+            <span class="director">{{pelicula.director}}</span>
+            <br>
+            <span class="puntuacion">{{pelicula.puntuacion}}</span>
+            <br><br>
+    </div>
+
+    <p>
+        <button id="remove-film" onclick="location.href='/pelicula/eliminar/{{pelicula.id}}'">Remove</button>
+        <button id="edit-film" onclick="location.href='/pelicula/editar/{{pelicula.id}}'">Edit</button>
+        <button id="all-films" onclick="location.href='/peliculas'">All Films</button>
+    </p>
+
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Detalles Usuario</title>
+    </head>
+
+    <body>
+    <h1 class="header">{{usuario.nombre}}</h1>
+    <h2 class="header">{{usuario.email}}</h2>
+
+    <p>
+        <button id="remove-user" onclick="location.href='/usuario/eliminar/{{usuario.id}}'">Remove</button>
+        <button id="edit-user" onclick="location.href='/usuario/editar/{{usuario.id}}'">Edit</button>
+        <br><br>
+        <button id="user" onclick="location.href='/'">Home</button>
+    </p>
+
+    </body>
+</html>
