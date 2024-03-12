@@ -2,30 +2,40 @@
 <html>
     <head>
         <title>Películas</title>
-        <!--Bootstrap/CSS-->
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--Bootstrap CSS-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
     </head>
 
-    <body style="background-color: #3f3f3f">
+    <body style="background-color: #2d2d2d">
         <div>
-            <h1 style="color: white; text-align: center; margin-top: 20px">Películas</h1>
+            <h1 style="color: white; text-align: center; margin-top: 20px; font-family: 'Copperplate Gothic Bold'">Películas</h1>
 
-            <div id="films">
-                {{^peliculas}}
-                    <h3>Sin películas</h3>
-                {{/peliculas}}
-                {{#peliculas}}
-                    <a class="nombre" href="/pelicula/detalles/{{id}}">{{nombre}} </a>
-                    <span class="puntuacion">Nota: {{puntuacion}}</span>
-                    <br><br>
-                {{/peliculas}}
+            <div class="row" id="films">
+                <div class="col col-1"></div>
+                <div class="col col-10">
+                    {{^peliculas}}
+                        <h4 style="color: white; text-align: center; margin-top: 15px">
+                            Sin películas
+                        </h4>
+                    {{/peliculas}}
+                    {{#peliculas}}
+                        <a class="nombre" href="/pelicula/detalles/{{id}}">{{nombre}} </a>
+                        <span class="puntuacion">Nota: {{puntuacion}}</span>
+                        <br><br>
+                    {{/peliculas}}
+                </div>
+                <div class="col col-1"></div>
             </div>
 
 
-            <button id="create-film" onclick="location.href='/pelicula/agregar'">New film</button>
-            <button id="reviews" onclick="location.href='/reviews'">Reviews</button>
+            <button type="button" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px" id="create-film" onclick="location.href='/pelicula/agregar'">
+                + Añadir película
+            </button>
         </div>
     </body>
 </html>
