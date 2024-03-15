@@ -14,7 +14,7 @@
     <body>
         <h1 class="header2">Inicio Usuario</h1>
 
-        <form class="form" action="/" method="post">
+        <form class="form-small" action="/" method="post">
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="user-email" name="email" placeholder="name@example.com">
                 <label for="user-email">Email address</label>
@@ -23,13 +23,17 @@
                 <input type="password" class="form-control" id="user-name" name="nombre" placeholder="User Name">
                 <label for="user-name">Name</label>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg" style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">Acceder</button>
-            <button type="button" class="btn btn-primary btn-lg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);" onclick="location.href='/usuario/agregar'">
-                Registrar
-            </button>
-            <button type="button" class="btn btn-primary btn-lg" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);" onclick="location.href='/usuarios'">
-                Lista de Usuarios
-            </button>
+            <br><br>
+            <div class="center">
+                <button type="submit" class="btn btn-primary btn-lg">Acceder</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/usuario/agregar'">
+                    Registrar
+                </button>
+                <br><br>
+                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/usuarios'">
+                    Lista de Usuarios
+                </button>
+            </div>
         </form>
 
     </body>

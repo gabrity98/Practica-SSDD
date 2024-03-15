@@ -2,18 +2,33 @@
     <html>
     <head>
         <title>Detalles Usuario</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="/CSS/styles.css">
     </head>
 
     <body>
-    <h1 class="header">{{usuario.nombre}}</h1>
-    <h2 class="header">{{usuario.email}}</h2>
-
-    <p>
-        <button id="remove-user" onclick="location.href='/usuario/eliminar/{{usuario.id}}'">Remove</button>
-        <button id="edit-user" onclick="location.href='/usuario/editar/{{usuario.id}}'">Edit</button>
-        <br><br>
-        <button id="user" onclick="location.href='/'">Home</button>
-    </p>
-
+        <h1 class="header2">Detalles Usuario</h1>
+        <form class="form-small" action="/usuario/editar" method="post">
+            <input id="user-id" type="hidden" name="id" value="{{usuario.id}}"/>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="user-email" name="email" value="{{usuario.email}}" placeholder="name@example.com" disabled>
+                <label for="user-email">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="user-name" name="nombre" value="{{usuario.nombre}}" placeholder="User Name" disabled>
+                <label for="user-name">Name</label>
+            </div>
+            <br><br>
+            <div class="center" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-danger" id="remove-film" onclick="location.href='/usuario/eliminar/{{usuario.id}}'">Remove</button>
+                <button type="button" class="btn btn-warning" id="edit-film" onclick="location.href='/usuario/editar/{{usuario.id}}'">Edit</button>
+                <button type="button" class="btn btn-success" id="all-films" onclick="location.href='/usuarios'">All Users</button>
+            </div>
+        </form>
     </body>
 </html>

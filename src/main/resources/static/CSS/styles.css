@@ -20,15 +20,18 @@
     margin-bottom: 25px;
     margin-left: 25px;
 }
+.form-small{
+    margin-top: 5%;
+    margin-right: 25%;
+    margin-bottom: 25px;
+    margin-left: 25%;
+}
 .form-label{
     color: black;
 }
 
-.btn-group{
-    width: 100px;
-    margin-top: 25px;
-    margin-left: 48%;
-    transform: translateX(-50%);
+.center{
+    text-align:center;
 }
 
 .checked{
