@@ -9,13 +9,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <link rel="stylesheet" href="/CSS/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body class="background-primary">
         <div>
-            <h1 style="color: white; text-align: center; margin-top: 20px; font-family: 'Copperplate Gothic Bold'">Películas</h1>
+            <h1 class="header">Películas</h1>
 
-            <div class="row" id="films">
+            <div class="row" id="films" style="margin-top: 50px">
                 <div class="col col-1"></div>
                 <div class="col col-10">
                     {{^peliculas}}
@@ -23,17 +24,27 @@
                             Sin películas
                         </h4>
                     {{/peliculas}}
-                    {{#peliculas}}
-                        <a class="nombre" href="/pelicula/detalles/{{id}}">{{nombre}} </a>
-                        <span class="puntuacion">Nota: {{puntuacion}}</span>
-                        <br><br>
-                    {{/peliculas}}
+                    <div class="row row-cols-1 row-cols-md-6 g-4">
+                        {{#peliculas}}
+                            <div class="col">
+                                <a class="card" style="text-decoration: none; color: black" href="pelicula/detalles/{{id}}">
+                                    <img src="/poster.jpg" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">{{nombre}}</h5>
+                                        <div class="text-center">
+                                            <span class="fa fa-star checked"></span>
+                                            {{puntuacion}}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {{/peliculas}}
+                    </div>
                 </div>
                 <div class="col col-1"></div>
             </div>
 
-
-            <button type="button" class="btn btn-primary" style="position: absolute; bottom: 15px; right: 15px" id="create-film" onclick="location.href='/pelicula/agregar'">
+            <button type="button" class="btn btn-primary" style="position: fixed; bottom: 20px; right: 20px" id="create-film" onclick="location.href='/pelicula/agregar'">
                 + Añadir película
             </button>
         </div>
