@@ -2,21 +2,43 @@
 <html>
     <head>
         <title>Usuarios</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="/CSS/styles.css">
     </head>
 
     <body>
-        <h1 class="header">All Users</h1>
+        <h1 class="header2">All Users</h1>
 
-        <div id="users">
-            {{^usuarios}}
-                <h3>Sin usuarios</h3>
-            {{/usuarios}}
-            {{#usuarios}}
-                <a class="nombre" href="/usuario/detalles/{{id}}">{{nombre}} </a><br>
-            {{/usuarios}}
+        <div class="row" id="users" style="margin-top: 50px">
+            <div class="col col-1"></div>
+            <div class="col col-10">
+                {{^usuarios}}
+                    <h4 style="color: black; text-align: center; margin-top: 15%">
+                        Sin películas
+                    </h4>
+                {{/usuarios}}
+                <div class="row row-cols-1 row-cols-md-6 g-4">
+                    {{#usuarios}}
+                        <div class="col">
+                            <a class="card" style="text-decoration: none; color: black" href="usuario/detalles/{{id}}">
+                                <img src="/user-icon.jpg" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{email}}</h5>
+                                </div>
+                            </a>
+                        </div>
+                    {{/usuarios}}
+                </div>
+            </div>
+            <div class="col col-1"></div>
         </div>
-        <br>
-
-    <button id="back" onclick="location.href='/'">Back</button>
+        <button type="button" class="btn btn-danger btn-lg" style="position: absolute; bottom: 15px; right: 15px" id="cancel" onclick="location.href='/'">
+            Back
+        </button>
     </body>
 </html>
