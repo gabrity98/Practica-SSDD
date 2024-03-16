@@ -37,3 +37,11 @@
 .checked{
     color: orange;
 }
+.navbar{
+    --bs-navbar-active-color: white;
+    --bs-navbar-hover-color: grey;
+}
+
+.nav-link{
+    color: white;
+}
