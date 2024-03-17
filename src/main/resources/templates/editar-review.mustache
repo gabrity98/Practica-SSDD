@@ -10,6 +10,7 @@
               integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <link rel="stylesheet" href="/CSS/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="/JS/Form.js"></script>
     </head>
 
     <header>
@@ -32,7 +33,7 @@
 
     <body>
         <h1 class="header2">Editar Review</h1>
-        <form class="form" action="/review/editar" method="post">
+        <form name="agregarReview" class="form" action="/review/editar" onsubmit="return reviewForm()" method="post">
             <input id="review-id" type="hidden" name="id" value="{{review.id}}"/>
             <div class="mb-3">
                 <label for="review-author" class="form-label">Autor</label>
@@ -44,7 +45,7 @@
             </div>
             <div class="mb-3">
                 <label for="review-rate" class="form-label">Puntuación</label>
-                <input type="number" class="form-control" id="review-rate" name="puntuacion" value="{{review.puntuacion}}" placeholder="La puntuacion" required>
+                <input type="number" step="0.1" class="form-control" id="review-rate" name="puntuacion" value="{{review.puntuacion}}" placeholder="La puntuacion" required>
             </div>
             <br><br>
             <div class="center">

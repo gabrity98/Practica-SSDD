@@ -10,6 +10,7 @@
               integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <link rel="stylesheet" href="/CSS/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="/JS/Form.js"></script>
     </head>
 
     <header>
@@ -33,7 +34,7 @@
     <body class="background-primary">
         <h1 class="header">Agregar Película</h1>
 
-        <form class="form" action="/pelicula/agregar" method="post">
+        <form name="agregarPelicula" class="form" action="/pelicula/agregar" onsubmit="return validateForm()" method="post">
             <div class="mb-3">
                 <label for="film-name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="film-name" name="nombre" placeholder="El nombre" required>
@@ -48,7 +49,7 @@
             </div>
             <div class="mb-3">
                 <label for="film-rate" class="form-label">Puntuacion</label>
-                <input type="number" class="form-control" id="film-rate" name="puntuacion" placeholder="La puntuación" required>
+                <input type="number" step="0.1" class="form-control" id="film-rate" name="puntuacion" placeholder="La puntuación" required>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
