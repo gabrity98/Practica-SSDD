@@ -2,25 +2,64 @@
 <html>
     <head>
         <title>Detalles Película</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="/CSS/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #1c1c1c">
+            <div class="container-fluid">
+                <i class="fa fa-film" style="color: white; font-size: 24px; margin-right: 20px"></i>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/peliculas">Películas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/usuarios">Usuarios</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <body>
-    <h1 class="header">{{pelicula.nombre}}</h1>
+        <h1 class="header2">Película</h1>
+        <br>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="row">Nombre: </th>
+                    <th scope="col">{{pelicula.nombre}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Género: </th>
+                    <td>{{pelicula.genero}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Director: </th>
+                    <td>{{pelicula.director}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Puntuación: </th>
+                    <td>{{pelicula.puntuacion}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <div id="films">
-            <span class="genero">{{pelicula.genero}}</span>
-            <br>
-            <span class="director">{{pelicula.director}}</span>
-            <br>
-            <span class="puntuacion">{{pelicula.puntuacion}}</span>
-            <br><br>
-    </div>
-
-    <p>
-        <button id="remove-film" onclick="location.href='/pelicula/eliminar/{{pelicula.id}}'">Remove</button>
-        <button id="edit-film" onclick="location.href='/pelicula/editar/{{pelicula.id}}'">Edit</button>
-        <button id="all-films" onclick="location.href='/peliculas'">All Films</button>
-    </p>
-
+        <div class="center" role="group" aria-label="Basic mixed styles example">
+            <button type="button" class="btn btn-danger" id="remove-film" onclick="location.href='/pelicula/eliminar/{{pelicula.id}}'">Remove</button>
+            <button type="button" class="btn btn-warning" id="edit-film" onclick="location.href='/pelicula/editar/{{pelicula.id}}'">Edit</button>
+            <button type="button" class="btn btn-success" id="all-films" onclick="location.href='/peliculas'">All Films</button>
+        </div>
     </body>
 </html>

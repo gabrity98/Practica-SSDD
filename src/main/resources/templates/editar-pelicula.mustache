@@ -2,38 +2,60 @@
 <html>
     <head>
         <title>Editar Película</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--Bootstrap CSS-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="/CSS/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
-    <body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #1c1c1c">
+            <div class="container-fluid">
+                <i class="fa fa-film" style="color: white; font-size: 24px; margin-right: 20px"></i>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/peliculas">Películas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/usuarios">Usuarios</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <body class="background-primary">
         <h1 class="header">Editar Película</h1>
 
-        <form action="/pelicula/editar" method="post">
+        <form class="form" action="/pelicula/editar" method="post">
             <input id="id-pelicula" type="hidden" name="id" value="{{pelicula.id}}"/>
-            <h2>Edit Film</h2>
-            <div class="field">
-                <label>Nombre </label>
-                <input id="nombre-pelicula" type="text" name="nombre" value="{{pelicula.nombre}}" placeholder="El nombre" required/>
+            <div class="mb-3">
+                <label for="film-name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="film-name" name="nombre" value="{{pelicula.nombre}}" placeholder="El nombre" required>
             </div>
-            <br>
-            <div class="field">
-                <label>Género</label>
-                <input id="genero-pelicula" type="text" name="genero" value="{{pelicula.genero}}" placeholder="El género" required/>
+            <div class="mb-3">
+                <label for="film-genre" class="form-label">Género</label>
+                <input type="text" class="form-control" id="film-genre" name="genero" value="{{pelicula.genero}}" placeholder="El género" required>
             </div>
-            <br>
-            <div class="field">
-                <label>Director</label>
-                <input id="director-pelicula" type="text" name="director" value="{{pelicula.director}}" placeholder="El director" required/>
+            <div class="mb-3">
+                <label for="film-director" class="form-label">Director</label>
+                <input type="text" class="form-control" id="film-director" name="director" value="{{pelicula.director}}" placeholder="El director" required>
             </div>
-            <br>
-            <div class="field">
-                <label>Puntuacion</label>
-                <input id="puntuacion-pelicula" type="number" name="puntuacion" value="{{pelicula.puntuacion}}" placeholder="La puntuación" required/>
+            <div class="mb-3">
+                <label for="film-rate" class="form-label">Puntuacion</label>
+                <input type="number" class="form-control" id="film-rate" name="puntuacion" value="{{pelicula.puntuacion}}" placeholder="La puntuación" required>
             </div>
-            <p>
-                <button onclick="location.href='/peliculas/detalles/{{pelicula.id}}'; return true;">Cancel</button>
-                <input type="submit" id="Save" value="Save" />
-            </p>
+            <button type="submit" class="btn btn-primary">Edit</button>
         </form>
+        <button type="button" class="btn btn-danger" style="position: absolute; bottom: 15px; right: 15px" id="cancel" onclick="location.href='/peliculas'">
+            Cancel
+        </button>
 
     </body>
 </html>
