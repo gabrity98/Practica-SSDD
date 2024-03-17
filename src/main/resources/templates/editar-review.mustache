@@ -31,30 +31,28 @@
     </header>
 
     <body>
-    <h1 class="header">Editar Review</h1>
-
-    <form action="/review/editar" method="post">
-        <input id="id-review" type="hidden" name="id" value="{{review.id}}"/>
-        <h2>Edit Review</h2>
-        <div class="field">
-            <label>Autor </label>
-            <input id="autor-review" type="text" name="autor" value="{{review.autor}}" placeholder="El autor" required/>
-        </div>
-        <br>
-        <div class="field">
-            <label>Contenido </label>
-            <textarea id="contenido-review" name="contenido" value="{{review.contenido}}" placeholder="El contenido" required></textarea>
-        </div>
-        <br>
-        <div class="field">
-            <label>Puntuacion </label>
-            <input id="puntuacion-review" type="number" name="puntuacion" value="{{review.puntuacion}}" placeholder="La puntuacion" required/>
-        </div>
-        <p>
-            <button onclick="location.href='/review/detalles/{{review.id}}'; return true;">Cancel</button>
-            <input type="submit" id="Save" value="Save" />
-        </p>
-    </form>
-
+        <h1 class="header2">Editar Review</h1>
+        <form class="form" action="/review/editar" method="post">
+            <input id="review-id" type="hidden" name="id" value="{{review.id}}"/>
+            <div class="mb-3">
+                <label for="review-author" class="form-label">Autor</label>
+                <input type="text" class="form-control" id="review-author" name="autor" value="{{review.autor}}" placeholder="El autor" required>
+            </div>
+            <div class="mb-3">
+                <label for="review-content" class="form-label">Contenido</label>
+                <textarea class="form-control" id="review-content" rows="3" name="contenido" placeholder="El contenido" required>{{review.contenido}}                </textarea>
+            </div>
+            <div class="mb-3">
+                <label for="review-rate" class="form-label">Puntuación</label>
+                <input type="number" class="form-control" id="review-rate" name="puntuacion" value="{{review.puntuacion}}" placeholder="La puntuacion" required>
+            </div>
+            <br><br>
+            <div class="center">
+                <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                <button type="button" class="btn btn-danger btn-lg" onclick="location.href='/review/detalles/{{review.id}}'">
+                    Cancel
+                </button>
+            </div>
+        </form>
     </body>
 </html>
