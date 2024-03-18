@@ -41,22 +41,19 @@ public class ReviewRESTController {
         return ResponseEntity.ok(reviewActualizadao);
     }
     
-    @PatchMapping("/{id}")
-    public ResponseEntity<Review> actualizarParcialmenteReview(@PathVariable Long id, @RequestBody Pelicula parcialReview) {
-        if (!Review.containsKey(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        Review existente = review.get(id);
+      @PatchMapping("/{id}")
+    public ResponseEntity<Review> actualizarParcialmenteReview(@PathVariable Long id, @RequestBody Review parcialReview) {
+        Review existente = reviewService.getReview(id);
         if (parcialReview.getAutor() != null) {
             existente.setAutor(parcialReview.getAutor());
         }
         if (parcialReview.getContenido() != null) {
             existente.setContenido(parcialReview.getContenido());
         }
-        if (parcialReview.getPuntuacion() != null) {
+        if (parcialReview.getPuntuacion() != 0.0) {
             existente.setPuntuacion(parcialReview.getPuntuacion());
         }
-        Review.put(id, existente);
+        ReviewService.actualizarReview(id, existente);
         return ResponseEntity.ok(existente);
     }
     
