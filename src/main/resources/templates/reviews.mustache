@@ -30,24 +30,38 @@
         </nav>
     </header>
 
-    <body>
-        <h1 class="header2">All Reviews</h1>
+    <body class="background-primary">
+        <h1 class="header">All Reviews</h1>
 
-        <div class="card center" style="margin-right: 25%; margin-left: 25%;">
-            <ul class="list-group list-group-flush">
-                {{^reviews}}
-                    <h4 style="color: black; text-align: center; margin-top: 15%">
-                        Sin reviews
-                    </h4>
-                {{/reviews}}
-                {{#reviews}}
-                    <li class="list-group-item">
-                        <a href="/review/detalles/{{id}}">
-                            {{autor}} {{puntuacion}}
-                        </a>
-                    </li>
-                {{/reviews}}
-            </ul>
+        <div class="card center" style="margin-right: 15%; margin-left: 15%;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Contenido</th>
+                        <th scope="col">Nota</th>
+                        <th scope="col">BTN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#reviews}}
+                        <tr>
+                            <td>{{autor}}</td>
+                            <td>{{contenido}}</td>
+                            <td>{{puntuacion}}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning" id="edit-review" onclick="location.href='/review/editar/{{id}}'">Edit</button>
+                                <button type="button" class="btn btn-danger" id="remove-review" onclick="location.href='/review/eliminar/{{id}}'">Remove</button>
+                            </td>
+                        </tr>
+                    {{/reviews}}
+                </tbody>
+            </table>
+            {{^reviews}}
+                <h4 style="color: black; text-align: center; margin-top: 15%">
+                    Sin reviews
+                </h4>
+            {{/reviews}}
         </div>
 
         <button type="button" class="btn btn-danger btn-lg" style="position: absolute; bottom: 15px; right: 15px" id="back" onclick="location.href='/peliculas'">

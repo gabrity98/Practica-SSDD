@@ -30,8 +30,8 @@
         </nav>
     </header>
 
-    <body>
-        <h1 class="header2">Detalles Review</h1>
+    <body class="background-primary">
+        <h1 class="header">Detalles Review</h1>
         <form class="form" action="/review/editar" method="post">
             <input id="review-id" type="hidden" name="id" value="{{review.id}}"/>
             <div class="mb-3">
@@ -40,7 +40,7 @@
             </div>
             <div class="mb-3">
                 <label for="review-content" class="form-label">Contenido</label>
-                <textarea class="form-control" id="review-content" rows="3" name="contenido" placeholder="El contenido" disabled>{{review.contenido}}                </textarea>
+                <textarea class="form-control" id="review-content" rows="3" name="contenido" placeholder="El contenido" disabled>{{review.contenido}}</textarea>
             </div>
             <div class="mb-3">
                 <label for="review-rate" class="form-label">Puntuación</label>

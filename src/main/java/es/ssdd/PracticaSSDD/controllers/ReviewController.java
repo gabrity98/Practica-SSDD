@@ -44,7 +44,7 @@ public class ReviewController {
     @PostMapping("/review/editar")
     public String editarReview(Review review){
         reviewService.actualizarReview(review.getId(), review);
-        return "redirect:/review/detalles/"+review.getId();
+        return "redirect:/reviews";
     }
 
     @GetMapping("/review/eliminar/{id}")

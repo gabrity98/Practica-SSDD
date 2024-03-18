@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="/CSS/styles.css">
     </head>
 
-    <body>
-        <h1 class="header2">Inicio Usuario</h1>
+    <body class="background-primary">
+        <h1 class="header">Inicio Usuario</h1>
 
         <form class="form-small" action="/" method="post">
             <div class="form-floating mb-3">
@@ -20,7 +20,7 @@
                 <label for="user-email">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="user-name" name="nombre" placeholder="User Name">
+                <input type="text" class="form-control" id="user-name" name="nombre" placeholder="User Name">
                 <label for="user-name">Name</label>
             </div>
             <br><br>
@@ -28,10 +28,6 @@
                 <button type="submit" class="btn btn-primary btn-lg">Acceder</button>
                 <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/usuario/agregar'">
                     Registrar
-                </button>
-                <br><br>
-                <button type="button" class="btn btn-primary btn-lg" onclick="location.href='/usuarios'">
-                    Lista de Usuarios
                 </button>
             </div>
         </form>

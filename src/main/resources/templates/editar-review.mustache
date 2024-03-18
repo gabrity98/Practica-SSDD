@@ -31,8 +31,8 @@
         </nav>
     </header>
 
-    <body>
-        <h1 class="header2">Editar Review</h1>
+    <body class="background-primary">
+        <h1 class="header">Editar Review</h1>
         <form name="agregarReview" class="form" action="/review/editar" onsubmit="return reviewForm()" method="post">
             <input id="review-id" type="hidden" name="id" value="{{review.id}}"/>
             <div class="mb-3">
@@ -41,7 +41,7 @@
             </div>
             <div class="mb-3">
                 <label for="review-content" class="form-label">Contenido</label>
-                <textarea class="form-control" id="review-content" rows="3" name="contenido" placeholder="El contenido" required>{{review.contenido}}                </textarea>
+                <textarea class="form-control" id="review-content" rows="3" name="contenido" placeholder="El contenido" required>{{review.contenido}}</textarea>
             </div>
             <div class="mb-3">
                 <label for="review-rate" class="form-label">Puntuación</label>
@@ -50,7 +50,7 @@
             <br><br>
             <div class="center">
                 <button type="submit" class="btn btn-primary btn-lg">Save</button>
-                <button type="button" class="btn btn-danger btn-lg" onclick="location.href='/review/detalles/{{review.id}}'">
+                <button type="button" class="btn btn-danger btn-lg" onclick="location.href='/reviews'">
                     Cancel
                 </button>
             </div>
