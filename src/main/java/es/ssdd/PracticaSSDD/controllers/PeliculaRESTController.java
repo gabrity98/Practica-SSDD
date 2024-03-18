@@ -41,7 +41,7 @@ public class PeliculaRESTController {
         }
         return ResponseEntity.ok(peliculaActualizada);
     }
-     @PatchMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Pelicula> actualizarParcialmentePelicula(@PathVariable Long id, @RequestBody Pelicula parcialPelicula) {
         if (!pelicula.containsKey(id)) {
             return ResponseEntity.notFound().build();
