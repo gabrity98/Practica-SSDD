@@ -44,10 +44,7 @@ public class PeliculaRESTController {
     
     @PatchMapping("/{id}")
     public ResponseEntity<Pelicula> actualizarParcialmentePelicula(@PathVariable Long id, @RequestBody Pelicula parcialPelicula) {
-        if (!pelicula.containsKey(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        Pelicula existente = pelicula.get(id);
+        Pelicula existente = peliculaService.getPelicula(id);
         if (parcialPelicula.getNombre() != null) {
             existente.setNombre(parcialPelicula.getNombre());
         }
@@ -60,9 +57,9 @@ public class PeliculaRESTController {
          if (parcialPelicula.getPuntuacion() != null) {
             existente.setPuntuacion(parcialPelicula.getPuntuacion());
         }
-        pelicula.put(id, existente);
+        peliculaService.actualizarPelicula(id, existente);
         return ResponseEntity.ok(existente);
-    }
+    }   
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarPelicula(@PathVariable Long id){
