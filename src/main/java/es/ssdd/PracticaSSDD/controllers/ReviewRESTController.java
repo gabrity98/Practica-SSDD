@@ -42,7 +42,7 @@ public class ReviewRESTController {
     }
     
     @PatchMapping("/{id}")
-    public ResponseEntity<review> actualizarParcialmenteReview(@PathVariable Long id, @RequestBody Pelicula parcialReview) {
+    public ResponseEntity<Review> actualizarParcialmenteReview(@PathVariable Long id, @RequestBody Pelicula parcialReview) {
         if (!Review.containsKey(id)) {
             return ResponseEntity.notFound().build();
         }
