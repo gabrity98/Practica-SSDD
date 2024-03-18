@@ -40,7 +40,23 @@ public class UsuarioRESTController {
         }
         return ResponseEntity.ok(usuarioActualizadao);
     }
-
+    
+    @PatchMapping("/{id}")
+    public ResponseEntity<Usuario> actualizarParcialmenteUsuario(@PathVariable Long id, @RequestBody Pelicula parcialUsuario) {
+        if (!Usuario.containsKey(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        Usuario existente = Usuario.get(id);
+        if (parcialUsuario.getNombre() != null) {
+            existente.setNombre(parcialUsuario.getNombre());
+        }
+        if (parcialUsuario.getEmail() != null) {
+            existente.setEmail(parcialUsuario.getEmail());
+        }
+        Usuario.put(id, existente);
+        return ResponseEntity.ok(existente);
+    }
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarUsuario(@PathVariable Long id){
         usuarioService.eliminarUsuario(id);
