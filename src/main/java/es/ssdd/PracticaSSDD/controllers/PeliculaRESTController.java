@@ -43,7 +43,7 @@ public class PeliculaRESTController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarCerveza(@PathVariable Long id){
+    public ResponseEntity<Void> eliminarPelicula(@PathVariable Long id){
         peliculaService.eliminarPelicula(id);
         return ResponseEntity.ok().build();
     }
