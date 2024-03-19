@@ -53,7 +53,7 @@ public class ReviewRESTController {
         if (parcialReview.getPuntuacion() != 0.0) {
             existente.setPuntuacion(parcialReview.getPuntuacion());
         }
-        ReviewService.actualizarReview(id, existente);
+        reviewService.actualizarReview(id, existente);
         return ResponseEntity.ok(existente);
     }
     
