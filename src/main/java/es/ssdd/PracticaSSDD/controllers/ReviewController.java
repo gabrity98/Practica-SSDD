@@ -52,14 +52,4 @@ public class ReviewController {
         reviewService.eliminarReview(id);
         return "redirect:/reviews";
     }
-
-    @GetMapping("/review/detalles/{id}")
-    public String mostrarDetallesReview(@PathVariable Long id, Model model){
-        Review review = reviewService.getReview(id);
-        if (review == null) {
-            return "redirect:/";
-        }
-        model.addAttribute("review", review);
-        return "detalles-review";
-    }
 }
