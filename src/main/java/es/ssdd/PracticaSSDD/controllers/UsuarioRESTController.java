@@ -43,14 +43,14 @@ public class UsuarioRESTController {
     
     @PatchMapping("/{id}")
     public ResponseEntity<Usuario> actualizarParcialmenteUsuario(@PathVariable Long id, @RequestBody Usuario parcialUsuario) {
-        Usuario existente = UsuarioService.getUsuario(id);
+        Usuario existente = usuarioService.getUsuario(id);
         if (parcialUsuario.getNombre() != null) {
             existente.setNombre(parcialUsuario.getNombre());
         }
         if (parcialUsuario.getEmail() != null) {
             existente.setEmail(parcialUsuario.getEmail());
         }
-        UsuarioService.actualizarUsuario(id, existente);
+        usuarioService.actualizarUsuario(id, existente);
         return ResponseEntity.ok(existente);
     }
     
