@@ -41,7 +41,7 @@ public class ReviewRESTController {
         return ResponseEntity.ok(reviewActualizadao);
     }
     
-      @PatchMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Review> actualizarParcialmenteReview(@PathVariable Long id, @RequestBody Review parcialReview) {
         Review existente = reviewService.getReview(id);
         if (parcialReview.getAutor() != null) {
