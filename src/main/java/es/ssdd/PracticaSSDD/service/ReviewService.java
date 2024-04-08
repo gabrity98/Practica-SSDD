@@ -13,6 +13,8 @@ public class ReviewService {
     private final AtomicLong nextId = new AtomicLong();
 
     public Review crearReview(Review review){
+        if (review.getAutor() == null || review.getContenido() == null)
+            return null;
         long id = nextId.incrementAndGet();
         review.setId(id);
         reviews.put(id,review);
@@ -29,6 +31,8 @@ public class ReviewService {
 
     public Review actualizarReview(Long id, Review review){
         if (!reviews.containsKey(id))
+            return null;
+        if (review.getAutor() == null || review.getContenido() == null)
             return null;
         review.setId(id);
         reviews.put(id, review);

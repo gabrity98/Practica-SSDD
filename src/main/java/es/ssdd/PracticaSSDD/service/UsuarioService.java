@@ -13,6 +13,8 @@ public class UsuarioService {
     private final AtomicLong nextId = new AtomicLong();
 
     public Usuario crearUsuario(Usuario usuario){
+        if (usuario.getNombre() == null || usuario.getEmail() == null)
+            return null;
         long id = nextId.incrementAndGet();
         usuario.setId(id);
         usuarios.put(id,usuario);
@@ -29,6 +31,8 @@ public class UsuarioService {
 
     public Usuario actualizarUsuario(Long id, Usuario usuario){
         if (!usuarios.containsKey(id))
+            return null;
+        if (usuario.getNombre() == null || usuario.getEmail() == null)
             return null;
         usuario.setId(id);
         usuarios.put(id,usuario);

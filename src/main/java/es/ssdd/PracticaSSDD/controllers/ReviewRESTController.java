@@ -1,5 +1,6 @@
 package es.ssdd.PracticaSSDD.controllers;
 
+import es.ssdd.PracticaSSDD.entities.Pelicula;
 import es.ssdd.PracticaSSDD.entities.Review;
 import es.ssdd.PracticaSSDD.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,17 @@ public class ReviewRESTController {
 
     @PostMapping
     public ResponseEntity<Review> crearReview(@RequestBody Review review){
-        return ResponseEntity.status(201).body(reviewService.crearReview(review));
+        if (review == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Review nuevaReview = reviewService.crearReview(review);
+
+        if (nuevaReview == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.status(201).body(nuevaReview);
     }
 
     @GetMapping("/{id}")
@@ -36,7 +47,7 @@ public class ReviewRESTController {
     public ResponseEntity<Review> actualizarReview(@PathVariable Long id, @RequestBody Review review){
         Review reviewActualizadao = reviewService.actualizarReview(id, review);
         if (reviewActualizadao == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(reviewActualizadao);
     }
