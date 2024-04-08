@@ -3,6 +3,7 @@ package es.ssdd.PracticaSSDD.controllers;
 import es.ssdd.PracticaSSDD.entities.Pelicula;
 import es.ssdd.PracticaSSDD.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,17 @@ public class PeliculaRESTController {
 
     @PostMapping
     public ResponseEntity<Pelicula> crearPelicula(@RequestBody Pelicula pelicula){
-        return ResponseEntity.status(201).body(peliculaService.crearPelicula(pelicula));
+        if (pelicula == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Pelicula nuevaPelicula = peliculaService.crearPelicula(pelicula);
+
+        if (nuevaPelicula == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.status(201).body(nuevaPelicula);
     }
 
     @GetMapping("/{id}")
@@ -37,7 +48,7 @@ public class PeliculaRESTController {
     public ResponseEntity<Pelicula> actualizarPelicula(@PathVariable Long id, @RequestBody Pelicula pelicula){
         Pelicula peliculaActualizada = peliculaService.actualizarPelicula(id, pelicula);
         if (peliculaActualizada == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(peliculaActualizada);
     }

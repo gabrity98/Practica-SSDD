@@ -13,6 +13,8 @@ public class PeliculaService {
     private final AtomicLong nextId = new AtomicLong();
 
     public Pelicula crearPelicula(Pelicula pelicula){
+        if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
+            return null;
         long id = nextId.incrementAndGet();
         pelicula.setId(id);
         peliculas.put(id,pelicula);
@@ -29,6 +31,8 @@ public class PeliculaService {
 
     public Pelicula actualizarPelicula(Long id, Pelicula pelicula){
         if (!peliculas.containsKey(id))
+            return null;
+        if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
             return null;
         pelicula.setId(id);
         peliculas.put(id, pelicula);
