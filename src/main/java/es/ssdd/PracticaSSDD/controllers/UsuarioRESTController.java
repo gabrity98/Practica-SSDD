@@ -16,7 +16,16 @@ public class UsuarioRESTController {
 
     @PostMapping
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario){
-        return ResponseEntity.status(201).body(usuarioService.crearUsuario(usuario));
+        if (usuario == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        Usuario nuevoUsuario = usuarioService.crearUsuario(usuario);
+
+        if (nuevoUsuario == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.status(201).body(nuevoUsuario);
     }
 
     @GetMapping("/{id}")
@@ -36,7 +45,7 @@ public class UsuarioRESTController {
     public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario){
         Usuario usuarioActualizadao = usuarioService.actualizarUsuario(id, usuario);
         if (usuarioActualizadao == null) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(usuarioActualizadao);
     }
