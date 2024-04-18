@@ -16,6 +16,14 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Review> reviews = new HashSet<>();
 
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "usuario_peliculas",
+            joinColumns =@JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "pelicula_id")
+    )
+    private Set<Pelicula> peliculas = new HashSet<>();
+
     public Usuario(){}
     public Usuario(Long id, String nombre, String email){
         this.id = id;

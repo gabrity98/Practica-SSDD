@@ -18,6 +18,9 @@ public class Pelicula {
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Review> reviews = new HashSet<>();
 
+    @ManyToMany(mappedBy = "peliculas")
+    private Set<Usuario> usuarios = new HashSet<>();
+
     public Pelicula(){}
 
     public Pelicula(Long id, String nombre, String genero, String director, Double puntuacion){
