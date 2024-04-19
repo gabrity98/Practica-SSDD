@@ -1,6 +1,8 @@
 package es.ssdd.PracticaSSDD.service;
 
 import es.ssdd.PracticaSSDD.entities.Pelicula;
+import es.ssdd.PracticaSSDD.repositories.PeliculaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -9,37 +11,35 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class PeliculaService {
-    private final Map<Long, Pelicula> peliculas = new HashMap<>();
-    private final AtomicLong nextId = new AtomicLong();
+    @Autowired
+    private PeliculaRepository peliculaRepository;
 
     public Pelicula crearPelicula(Pelicula pelicula){
         if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
             return null;
-        long id = nextId.incrementAndGet();
-        pelicula.setId(id);
-        peliculas.put(id,pelicula);
+        peliculaRepository.save(pelicula);
         return pelicula;
     }
 
     public Pelicula getPelicula(Long id){
-        return peliculas.get(id);
+        return peliculaRepository.getReferenceById(id);
     }
 
     public Collection<Pelicula> getAllPeliculas(){
-        return peliculas.values();
+        return peliculaRepository.findAll();
     }
 
     public Pelicula actualizarPelicula(Long id, Pelicula pelicula){
-        if (!peliculas.containsKey(id))
+        if (!peliculaRepository.existsById(id))
             return null;
         if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
             return null;
-        pelicula.setId(id);
-        peliculas.put(id, pelicula);
+        Pelicula miPelicula = peliculaRepository.getReferenceById(id);
+        miPelicula = pelicula;
         return pelicula;
     }
 
     public void eliminarPelicula(Long id){
-        peliculas.remove(id);
+        peliculaRepository.deleteById(id);
     }
 }
