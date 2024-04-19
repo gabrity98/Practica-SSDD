@@ -1,10 +1,23 @@
 package es.ssdd.PracticaSSDD.entities;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String autor;
     private String contenido;
     private double puntuacion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pelicula_id")
+    private Pelicula pelicula;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     public Review(){}
     public Review(Long id, String autor, String contenido, double puntuacion){
