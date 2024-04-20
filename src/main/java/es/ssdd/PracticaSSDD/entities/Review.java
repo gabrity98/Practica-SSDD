@@ -58,4 +58,20 @@ public class Review {
     public void setPuntuacion(double puntuacion) {
         this.puntuacion = puntuacion;
     }
+
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

@@ -70,4 +70,20 @@ public class Pelicula {
     public void setPuntuacion(Double puntuacion) {
         this.puntuacion = puntuacion;
     }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 }

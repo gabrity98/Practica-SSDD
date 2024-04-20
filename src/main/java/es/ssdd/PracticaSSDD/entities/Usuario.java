@@ -54,4 +54,20 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public Set<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setPeliculas(Set<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }
 }
