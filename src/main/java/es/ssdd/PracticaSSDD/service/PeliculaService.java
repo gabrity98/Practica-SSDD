@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class PeliculaService {
@@ -22,7 +23,7 @@ public class PeliculaService {
     }
 
     public Pelicula getPelicula(Long id){
-        return peliculaRepository.getReferenceById(id);
+        return peliculaRepository.findById(id).orElse(null);
     }
 
     public Collection<Pelicula> getAllPeliculas(){
@@ -34,8 +35,8 @@ public class PeliculaService {
             return null;
         if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
             return null;
-        Pelicula miPelicula = peliculaRepository.getReferenceById(id);
-        miPelicula = pelicula;
+        pelicula.setId(id);
+        peliculaRepository.save(pelicula);
         return pelicula;
     }
 
