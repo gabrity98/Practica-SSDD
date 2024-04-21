@@ -20,9 +20,9 @@ public class ReviewService {
             return null;
         Pelicula pelicula = peliculaRepository.findById(idPelicula).orElseThrow(() ->
                 new IllegalArgumentException("La película con id " + idPelicula + " no existe"));
-        reviewRepository.save(review);
         review.setPelicula(pelicula);
         pelicula.getReviews().add(review);
+        reviewRepository.save(review);
         return review;
     }
 
@@ -45,11 +45,12 @@ public class ReviewService {
         if (review.getAutor() == null || review.getContenido() == null)
             return null;
         Review reviewVieja = reviewRepository.findById(id).get();
-        Pelicula pelicula = peliculaRepository.findById(reviewVieja.getPelicula().getId()).get();
-        pelicula.getReviews().remove(reviewVieja);
+        //Pelicula pelicula = peliculaRepository.findById(reviewVieja.getPelicula().getId()).get();
+        //pelicula.getReviews().remove(reviewVieja);
         review.setId(id);
+        review.setPelicula(reviewVieja.getPelicula());
+        //pelicula.getReviews().add(review);
         reviewRepository.save(review);
-        pelicula.getReviews().add(review);
         return review;
     }
 

@@ -2,6 +2,7 @@ package es.ssdd.PracticaSSDD.controllers;
 
 import es.ssdd.PracticaSSDD.entities.Pelicula;
 import es.ssdd.PracticaSSDD.service.PeliculaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,11 +55,12 @@ public class PeliculaController {
     }
 
     @GetMapping("/pelicula/detalles/{id}")
-    public String mostrarDetallesPelicula(@PathVariable Long id, Model model){
+    public String mostrarDetallesPelicula(@PathVariable Long id, Model model, HttpSession session){
         Pelicula pelicula = peliculaService.getPelicula(id);
         if (pelicula == null) {
             return "redirect:/peliculas";
         }
+        session.setAttribute("peliculaID", id);
         model.addAttribute("pelicula", pelicula);
         return "detalles-pelicula";
     }
