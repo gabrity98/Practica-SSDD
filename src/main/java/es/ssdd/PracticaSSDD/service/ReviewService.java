@@ -34,6 +34,11 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
+    public Collection<Review> getAllFilmReviews(Long id) {
+        Pelicula pelicula = peliculaRepository.findById(id).get();
+        return pelicula.getReviews();
+    }
+
     public Review actualizarReview(Long id, Review review){
         if (!reviewRepository.existsById(id))
             return null;
