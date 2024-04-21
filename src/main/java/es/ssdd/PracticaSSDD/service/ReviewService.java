@@ -1,6 +1,7 @@
 package es.ssdd.PracticaSSDD.service;
 
 import es.ssdd.PracticaSSDD.entities.Review;
+import es.ssdd.PracticaSSDD.repositories.PeliculaRepository;
 import es.ssdd.PracticaSSDD.repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,14 @@ import java.util.Collection;
 public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
+    @Autowired
+    private PeliculaRepository peliculaRepository;
 
-    public Review crearReview(Review review){
+    public Review crearReview(Review review, Long idPelicula){
         if (review.getAutor() == null || review.getContenido() == null)
             return null;
         reviewRepository.save(review);
+        peliculaRepository.getReferenceById(idPelicula).getReviews().add(review);
         return review;
     }
 
@@ -26,13 +30,14 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
-    public Review actualizarReview(Long id, Review review){
+    public Review actualizarReview(Long id, Review review, Long idPelicula){
         if (!reviewRepository.existsById(id))
             return null;
         if (review.getAutor() == null || review.getContenido() == null)
             return null;
         review.setId(id);
         reviewRepository.save(review);
+        peliculaRepository.getReferenceById(idPelicula).getReviews().add(review);
         return review;
     }
 
