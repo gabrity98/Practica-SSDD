@@ -21,6 +21,13 @@ public class PeliculaController {
         return "peliculas";
     }
 
+    @GetMapping("/misPeliculas")
+    public String listarMisPeliculas(Model model, HttpSession session){
+        Long userID = (Long) session.getAttribute("userID");
+        model.addAttribute("peliculas", peliculaService.getAllUserPeliculas(userID));
+        return "peliculas";
+    }
+
     @GetMapping("/pelicula/agregar")
     public String mostrarFormularioAgregar(Model model){
         model.addAttribute("pelicula", new Pelicula());
@@ -28,8 +35,9 @@ public class PeliculaController {
     }
 
     @PostMapping("/pelicula/agregar")
-    public String agregarPelicula(Pelicula pelicula){
-        peliculaService.crearPelicula(pelicula);
+    public String agregarPelicula(Pelicula pelicula, HttpSession session){
+        Long userID = (Long) session.getAttribute("userID");
+        peliculaService.crearPelicula(pelicula, userID);
         return "redirect:/peliculas";
     }
 

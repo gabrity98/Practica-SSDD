@@ -1,5 +1,8 @@
 package es.ssdd.PracticaSSDD.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +23,11 @@ public class Pelicula {
     private Double puntuacion;
 
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<Review> reviews = new HashSet<>();
 
     @ManyToMany(mappedBy = "peliculas")
+    @JsonBackReference
     private Set<Usuario> usuarios = new HashSet<>();
 
     public Pelicula(){}

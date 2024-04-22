@@ -2,6 +2,7 @@ package es.ssdd.PracticaSSDD.controllers;
 
 import es.ssdd.PracticaSSDD.entities.Usuario;
 import es.ssdd.PracticaSSDD.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,10 @@ public class UsuarioController {
     }
 
     @PostMapping("/")
-    public String logInUser(Usuario usuario){
-        if(usuarioService.comprobarUsuario(usuario.getNombre(), usuario.getEmail())!= null){
+    public String logInUser(Usuario usuario, HttpSession session){
+        Usuario user = usuarioService.comprobarUsuario(usuario.getNombre(), usuario.getEmail());
+        if(user!= null){
+            session.setAttribute("userID", user.getId());
             return "redirect:/peliculas";
         }
         return "redirect:/";

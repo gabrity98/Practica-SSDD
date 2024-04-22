@@ -21,7 +21,8 @@ public class ReviewRESTController {
             return ResponseEntity.badRequest().build();
         }
 
-        Review nuevaReview = reviewService.crearReview(review, idPelicula);
+        // MODIFICAR
+        Review nuevaReview = reviewService.crearReview(review, idPelicula, 1L);
 
         if (nuevaReview == null) {
             return ResponseEntity.badRequest().build();

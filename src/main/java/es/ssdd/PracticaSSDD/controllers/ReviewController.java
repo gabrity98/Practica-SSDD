@@ -16,8 +16,9 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @GetMapping("/reviews")
-    public String listarReviews(Model model){
-        model.addAttribute("reviews", reviewService.getAllReviews());
+    public String listarReviews(Model model, HttpSession session){
+        Long peliculaID = (Long) session.getAttribute("peliculaID");
+        model.addAttribute("reviews", reviewService.getAllFilmReviews(peliculaID));
         return "reviews";
     }
 
@@ -30,7 +31,8 @@ public class ReviewController {
     @PostMapping("/review/agregar")
     public String agregarReview(Review review, HttpSession session){
         Long peliculaID = (Long) session.getAttribute("peliculaID");
-        reviewService.crearReview(review, peliculaID);
+        Long userID = (Long) session.getAttribute("userID");
+        reviewService.crearReview(review, peliculaID, userID);
         return "redirect:/reviews";
     }
 
