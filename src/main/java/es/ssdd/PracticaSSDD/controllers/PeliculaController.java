@@ -28,6 +28,13 @@ public class PeliculaController {
         return "peliculas";
     }
 
+    @PostMapping("/misPeliculas/agregar/{id}")
+    public String favoritePelicula(@PathVariable Long id, HttpSession session){
+        Long userID = (Long) session.getAttribute("userID");
+        peliculaService.favoritePelicula(id, userID);
+        return "redirect:/misPeliculas";
+    }
+
     @GetMapping("/pelicula/agregar")
     public String mostrarFormularioAgregar(Model model){
         model.addAttribute("pelicula", new Pelicula());
