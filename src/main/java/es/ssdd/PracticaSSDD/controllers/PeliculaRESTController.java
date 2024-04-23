@@ -46,6 +46,17 @@ public class PeliculaRESTController {
         return ResponseEntity.ok(peliculaService.getAllUserPeliculas(idUsuario));
     }
 
+    @PostMapping("/Usuario/{idUsuario}/{idPelicula}")
+    public ResponseEntity<Pelicula> favoritePelicula(@PathVariable Long idUsuario, @PathVariable Long idPelicula){
+        return ResponseEntity.ok(peliculaService.favoritePelicula(idPelicula, idUsuario));
+    }
+
+    @DeleteMapping("/Usuario/{idUsuario}/{idPelicula}")
+    public ResponseEntity<Void> eliminarFavoritos(@PathVariable Long idUsuario, @PathVariable Long idPelicula){
+        peliculaService.eliminarFavoritos(idPelicula, idUsuario);
+        return ResponseEntity.ok().build();
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Pelicula> actualizarPelicula(@PathVariable Long id, @RequestBody Pelicula pelicula){
         Pelicula peliculaActualizada = peliculaService.actualizarPelicula(id, pelicula);
