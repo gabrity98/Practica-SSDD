@@ -15,14 +15,13 @@ public class ReviewRESTController {
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping("{idPelicula}")
-    public ResponseEntity<Review> crearReview(@PathVariable Long idPelicula, @RequestBody Review review){
+    @PostMapping("/{idUsuario}/{idPelicula}")
+    public ResponseEntity<Review> crearReview(@PathVariable Long idPelicula, @PathVariable Long idUsuario,@RequestBody Review review){
         if (review == null) {
             return ResponseEntity.badRequest().build();
         }
 
-        // MODIFICAR
-        Review nuevaReview = reviewService.crearReview(review, idPelicula, 1L);
+        Review nuevaReview = reviewService.crearReview(review, idPelicula, idUsuario);
 
         if (nuevaReview == null) {
             return ResponseEntity.badRequest().build();

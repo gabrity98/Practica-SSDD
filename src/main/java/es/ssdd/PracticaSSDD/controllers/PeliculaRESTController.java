@@ -25,7 +25,6 @@ public class PeliculaRESTController {
         if (nuevaPelicula == null) {
             return ResponseEntity.badRequest().build();
         }
-
         return ResponseEntity.status(201).body(nuevaPelicula);
     }
 
@@ -40,6 +39,11 @@ public class PeliculaRESTController {
     @GetMapping
     public ResponseEntity<Collection<Pelicula>> getAllPeliculas(){
         return ResponseEntity.ok(peliculaService.getAllPeliculas());
+    }
+
+    @GetMapping("/{idUsuario}")
+    public ResponseEntity<Collection<Pelicula>> getAllUserPeliculas(@PathVariable Long idUsuario){
+        return ResponseEntity.ok(peliculaService.getAllUserPeliculas(idUsuario));
     }
 
     @PutMapping("/{id}")

@@ -23,7 +23,7 @@ public class Review {
     @JoinColumn(name = "pelicula_id")
     private Pelicula pelicula;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 

@@ -23,11 +23,12 @@ public class Pelicula {
     private String director;
     private Double puntuacion;
 
-    @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Review> reviews = new HashSet<>();
-
-    @ManyToMany(mappedBy = "peliculas")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany(mappedBy = "peliculas", fetch = FetchType.EAGER)
     private Set<Usuario> usuarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Review> reviews = new HashSet<>();
 
     public Pelicula(Long id, String nombre, String genero, String director, Double puntuacion){
         this.id = id;

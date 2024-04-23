@@ -24,9 +24,6 @@ public class Usuario {
     private String nombre;
     private String email;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Review> reviews = new HashSet<>();
-
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "usuario_peliculas",
@@ -34,6 +31,9 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "pelicula_id")
     )
     private Set<Pelicula> peliculas = new HashSet<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Review> reviews = new HashSet<>();
 
     public Usuario(Long id, String nombre, String email){
         this.id = id;
