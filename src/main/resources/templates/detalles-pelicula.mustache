@@ -64,6 +64,14 @@
             <button type="button" class="btn btn-warning" id="edit-film" onclick="location.href='/pelicula/editar/{{pelicula.id}}'">Edit</button>
             <button type="button" class="btn btn-success" id="all-films" onclick="location.href='/peliculas'">All Films</button>
         </div>
+        <div class="center" style="margin: 15px">
+            <form action="/misPeliculas/agregar/{{pelicula.id}}" method="post">
+                <button type="submit" class="btn btn-light" id="agregar-favoritos">
+                    <span class="fa fa-star"></span>
+                    Añadir a favoritos
+                </button>
+            </form>
+        </div>
         <div style="position: fixed; bottom: 20px; right: 20px">
             <button type="button" class="btn btn-primary" id="reviews" onclick="location.href='/reviews'">
                 Reviews

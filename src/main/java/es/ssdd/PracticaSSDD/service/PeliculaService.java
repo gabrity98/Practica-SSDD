@@ -41,6 +41,27 @@ public class PeliculaService {
         return user.getPeliculas();
     }
 
+    public Pelicula favoritePelicula(Long id, Long userID){
+        Pelicula pelicula = peliculaRepository.findById(id).get();
+        if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
+            return null;
+        Usuario user = usuarioRepository.getById(userID);
+        pelicula.getUsuarios().add(user);
+        user.getPeliculas().add(pelicula);
+        peliculaRepository.save(pelicula);
+        usuarioRepository.save(user);
+        return pelicula;
+    }
+
+    public void eliminarFavoritos(Long id, Long userID){
+        Usuario usuario = usuarioRepository.findById(userID).get();
+        Pelicula pelicula = peliculaRepository.findById(id).get();
+        usuario.getPeliculas().remove(pelicula);
+        pelicula.getUsuarios().remove(usuario);
+        peliculaRepository.save(pelicula);
+        usuarioRepository.save(usuario);
+    }
+
     public Pelicula actualizarPelicula(Long id, Pelicula pelicula){
         if (!peliculaRepository.existsById(id))
             return null;
