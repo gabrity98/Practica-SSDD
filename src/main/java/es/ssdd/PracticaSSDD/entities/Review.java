@@ -1,15 +1,16 @@
 package es.ssdd.PracticaSSDD.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,67 +21,16 @@ public class Review {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pelicula_id")
-    @JsonBackReference
     private Pelicula pelicula;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
-    @JsonBackReference
     private Usuario usuario;
 
-    public Review(){}
     public Review(Long id, String autor, String contenido, double puntuacion){
         this.id = id;
         this.autor = autor;
         this.contenido = contenido;
         this.puntuacion = puntuacion;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public double getPuntuacion() {
-        return puntuacion;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
-
-    public void setPuntuacion(double puntuacion) {
-        this.puntuacion = puntuacion;
-    }
-
-    public Pelicula getPelicula() {
-        return pelicula;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setPelicula(Pelicula pelicula) {
-        this.pelicula = pelicula;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 }

@@ -16,15 +16,12 @@ public class PeliculaRESTController {
     @Autowired
     private PeliculaService peliculaService;
 
-    @PostMapping
-    public ResponseEntity<Pelicula> crearPelicula(@RequestBody Pelicula pelicula){
+    @PostMapping("/{idUsuario}")
+    public ResponseEntity<Pelicula> crearPelicula(@PathVariable Long idUsuario, @RequestBody Pelicula pelicula){
         if (pelicula == null) {
             return ResponseEntity.badRequest().build();
         }
-
-        // MODIFICAR
-        Pelicula nuevaPelicula = peliculaService.crearPelicula(pelicula, 1L);
-
+        Pelicula nuevaPelicula = peliculaService.crearPelicula(pelicula, idUsuario);
         if (nuevaPelicula == null) {
             return ResponseEntity.badRequest().build();
         }
