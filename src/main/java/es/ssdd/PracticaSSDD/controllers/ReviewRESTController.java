@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/api/reviews")
+@RequestMapping("/api/reviews/")
 public class ReviewRESTController {
     @Autowired
     private ReviewService reviewService;
@@ -41,6 +41,16 @@ public class ReviewRESTController {
     @GetMapping
     public ResponseEntity<Collection<Review>> getAllReview(){
         return ResponseEntity.ok(reviewService.getAllReviews());
+    }
+
+    @GetMapping("/Pelicula/{idPelicula}")
+    public ResponseEntity<Collection<Review>> getAllFilmReviews(@PathVariable Long idPelicula){
+        return ResponseEntity.ok(reviewService.getAllFilmReviews(idPelicula));
+    }
+
+    @GetMapping("/Usuario/{idUsuario}")
+    public ResponseEntity<Collection<Review>> getAllUserReviews(@PathVariable Long idUsuario){
+        return ResponseEntity.ok(reviewService.getAllUserReviews(idUsuario));
     }
 
     @PutMapping("/{id}")

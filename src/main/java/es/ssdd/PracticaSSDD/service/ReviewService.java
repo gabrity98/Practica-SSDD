@@ -35,6 +35,8 @@ public class ReviewService {
         return review;
     }
 
+
+
     public Review getReview(Long id){
         return reviewRepository.findById(id).orElse(null);
     }
@@ -46,6 +48,11 @@ public class ReviewService {
     public Collection<Review> getAllFilmReviews(Long id) {
         Pelicula pelicula = peliculaRepository.findById(id).get();
         return pelicula.getReviews();
+    }
+
+    public Collection<Review> getAllUserReviews(Long id) {
+        Usuario user = usuarioRepository.findById(id).get();
+        return user.getReviews();
     }
 
     public Review actualizarReview(Long id, Review review){
