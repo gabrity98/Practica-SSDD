@@ -41,7 +41,7 @@ public class PeliculaRESTController {
         return ResponseEntity.ok(peliculaService.getAllPeliculas());
     }
 
-    @GetMapping("/{idUsuario}")
+    @GetMapping("/Usuario/{idUsuario}")
     public ResponseEntity<Collection<Pelicula>> getAllUserPeliculas(@PathVariable Long idUsuario){
         return ResponseEntity.ok(peliculaService.getAllUserPeliculas(idUsuario));
     }
