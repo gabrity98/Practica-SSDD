@@ -1,45 +1,88 @@
 package es.ssdd.PracticaSSDD.service;
 
 import es.ssdd.PracticaSSDD.entities.Pelicula;
+import es.ssdd.PracticaSSDD.entities.Review;
+import es.ssdd.PracticaSSDD.entities.Usuario;
+import es.ssdd.PracticaSSDD.repositories.PeliculaRepository;
+import es.ssdd.PracticaSSDD.repositories.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class PeliculaService {
-    private final Map<Long, Pelicula> peliculas = new HashMap<>();
-    private final AtomicLong nextId = new AtomicLong();
+    @Autowired
+    private PeliculaRepository peliculaRepository;
 
-    public Pelicula crearPelicula(Pelicula pelicula){
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public Pelicula crearPelicula(Pelicula pelicula, Long userID){
         if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
             return null;
-        long id = nextId.incrementAndGet();
-        pelicula.setId(id);
-        peliculas.put(id,pelicula);
+        Usuario user = usuarioRepository.getById(userID);
+        pelicula.getUsuarios().add(user);
+        user.getPeliculas().add(pelicula);
+        peliculaRepository.save(pelicula);
+        usuarioRepository.save(user);
         return pelicula;
     }
 
     public Pelicula getPelicula(Long id){
-        return peliculas.get(id);
+        return peliculaRepository.findById(id).orElse(null);
     }
 
     public Collection<Pelicula> getAllPeliculas(){
-        return peliculas.values();
+        return peliculaRepository.findAll();
+    }
+
+    public Collection<Pelicula> getAllUserPeliculas(Long id){
+        Usuario user = usuarioRepository.findById(id).get();
+        return user.getPeliculas();
+    }
+
+    public Pelicula favoritePelicula(Long id, Long userID){
+        Pelicula pelicula = peliculaRepository.findById(id).get();
+        if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
+            return null;
+        Usuario user = usuarioRepository.getById(userID);
+        pelicula.getUsuarios().add(user);
+        user.getPeliculas().add(pelicula);
+        peliculaRepository.save(pelicula);
+        usuarioRepository.save(user);
+        return pelicula;
+    }
+
+    public void eliminarFavoritos(Long id, Long userID){
+        Usuario usuario = usuarioRepository.findById(userID).get();
+        Pelicula pelicula = peliculaRepository.findById(id).get();
+        usuario.getPeliculas().remove(pelicula);
+        pelicula.getUsuarios().remove(usuario);
+        peliculaRepository.save(pelicula);
+        usuarioRepository.save(usuario);
     }
 
     public Pelicula actualizarPelicula(Long id, Pelicula pelicula){
-        if (!peliculas.containsKey(id))
+        if (!peliculaRepository.existsById(id))
             return null;
         if (pelicula.getNombre() == null || pelicula.getDirector() == null || pelicula.getGenero() == null || pelicula.getPuntuacion() == null)
             return null;
         pelicula.setId(id);
-        peliculas.put(id, pelicula);
+        peliculaRepository.save(pelicula);
         return pelicula;
     }
 
     public void eliminarPelicula(Long id){
-        peliculas.remove(id);
+        Pelicula pelicualAux = peliculaRepository.getById(id);
+        for(Usuario user : pelicualAux.getUsuarios()){
+            user.getPeliculas().remove(pelicualAux);
+            usuarioRepository.save(user);
+        }
+        for(Review review : pelicualAux.getReviews()){
+            Usuario user = review.getUsuario();
+            user.getReviews().remove(review);
+            usuarioRepository.save(user);
+        }
+        peliculaRepository.deleteById(id);
     }
 }

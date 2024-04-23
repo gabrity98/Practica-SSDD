@@ -22,7 +22,8 @@ public class PeliculaRESTController {
             return ResponseEntity.badRequest().build();
         }
 
-        Pelicula nuevaPelicula = peliculaService.crearPelicula(pelicula);
+        // MODIFICAR
+        Pelicula nuevaPelicula = peliculaService.crearPelicula(pelicula, 1L);
 
         if (nuevaPelicula == null) {
             return ResponseEntity.badRequest().build();

@@ -1,11 +1,18 @@
 package es.ssdd.PracticaSSDD.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class Pelicula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +23,11 @@ public class Pelicula {
     private Double puntuacion;
 
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Set<Review> reviews = new HashSet<>();
 
     @ManyToMany(mappedBy = "peliculas")
+    @JsonBackReference
     private Set<Usuario> usuarios = new HashSet<>();
 
     public Pelicula(){}
@@ -69,5 +78,21 @@ public class Pelicula {
 
     public void setPuntuacion(Double puntuacion) {
         this.puntuacion = puntuacion;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }

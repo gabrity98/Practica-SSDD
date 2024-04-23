@@ -2,6 +2,7 @@ package es.ssdd.PracticaSSDD.controllers;
 
 import es.ssdd.PracticaSSDD.entities.Review;
 import es.ssdd.PracticaSSDD.service.ReviewService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +16,9 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @GetMapping("/reviews")
-    public String listarReviews(Model model){
-        model.addAttribute("reviews", reviewService.getAllReviews());
+    public String listarReviews(Model model, HttpSession session){
+        Long peliculaID = (Long) session.getAttribute("peliculaID");
+        model.addAttribute("reviews", reviewService.getAllFilmReviews(peliculaID));
         return "reviews";
     }
 
@@ -27,8 +29,10 @@ public class ReviewController {
     }
 
     @PostMapping("/review/agregar")
-    public String agregarReview(Review review){
-        reviewService.crearReview(review);
+    public String agregarReview(Review review, HttpSession session){
+        Long peliculaID = (Long) session.getAttribute("peliculaID");
+        Long userID = (Long) session.getAttribute("userID");
+        reviewService.crearReview(review, peliculaID, userID);
         return "redirect:/reviews";
     }
 

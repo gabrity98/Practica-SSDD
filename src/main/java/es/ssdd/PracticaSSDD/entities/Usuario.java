@@ -1,5 +1,7 @@
 package es.ssdd.PracticaSSDD.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -13,7 +15,8 @@ public class Usuario {
     private String nombre;
     private String email;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<Review> reviews = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -22,6 +25,7 @@ public class Usuario {
             joinColumns =@JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "pelicula_id")
     )
+    @JsonManagedReference
     private Set<Pelicula> peliculas = new HashSet<>();
 
     public Usuario(){}
@@ -53,5 +57,21 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public Set<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void setPeliculas(Set<Pelicula> peliculas) {
+        this.peliculas = peliculas;
     }
 }
