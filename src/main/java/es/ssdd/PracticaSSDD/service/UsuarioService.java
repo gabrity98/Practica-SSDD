@@ -1,7 +1,10 @@
 package es.ssdd.PracticaSSDD.service;
 
+import es.ssdd.PracticaSSDD.entities.Pelicula;
+import es.ssdd.PracticaSSDD.entities.Review;
 import es.ssdd.PracticaSSDD.entities.Usuario;
 import es.ssdd.PracticaSSDD.repositories.PeliculaRepository;
+import es.ssdd.PracticaSSDD.repositories.ReviewRepository;
 import es.ssdd.PracticaSSDD.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,10 @@ import java.util.concurrent.atomic.AtomicLong;
 public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
+    @Autowired
+    private PeliculaRepository peliculaRepository;
 
     public Usuario crearUsuario(Usuario usuario){
         if (usuario.getNombre() == null || usuario.getEmail() == null)
@@ -43,6 +50,13 @@ public class UsuarioService {
     }
 
     public void eliminarUsuario(Long id){
+        Usuario user = usuarioRepository.getById(id);
+        for(Review review : user.getReviews()){
+            Pelicula pelicula = peliculaRepository.findById(review.getPelicula().getId()).get();
+            user.getReviews().remove(review);
+            pelicula.getReviews().remove(review);
+            reviewRepository.delete(review);
+        }
         usuarioRepository.deleteById(id);
     }
 
