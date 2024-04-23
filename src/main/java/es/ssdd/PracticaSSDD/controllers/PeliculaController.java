@@ -25,13 +25,20 @@ public class PeliculaController {
     public String listarMisPeliculas(Model model, HttpSession session){
         Long userID = (Long) session.getAttribute("userID");
         model.addAttribute("peliculas", peliculaService.getAllUserPeliculas(userID));
-        return "peliculas";
+        return "mis-peliculas";
     }
 
     @PostMapping("/misPeliculas/agregar/{id}")
     public String favoritePelicula(@PathVariable Long id, HttpSession session){
         Long userID = (Long) session.getAttribute("userID");
         peliculaService.favoritePelicula(id, userID);
+        return "redirect:/misPeliculas";
+    }
+
+    @PostMapping("/misPeliculas/eliminar/{id}")
+    public String eliminarFavoritos(@PathVariable Long id, HttpSession session){
+        Long userID = (Long) session.getAttribute("userID");
+        peliculaService.eliminarFavoritos(id, userID);
         return "redirect:/misPeliculas";
     }
 

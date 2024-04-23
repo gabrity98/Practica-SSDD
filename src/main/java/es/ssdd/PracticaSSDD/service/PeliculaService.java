@@ -53,6 +53,15 @@ public class PeliculaService {
         return pelicula;
     }
 
+    public void eliminarFavoritos(Long id, Long userID){
+        Usuario usuario = usuarioRepository.findById(userID).get();
+        Pelicula pelicula = peliculaRepository.findById(id).get();
+        usuario.getPeliculas().remove(pelicula);
+        pelicula.getUsuarios().remove(usuario);
+        peliculaRepository.save(pelicula);
+        usuarioRepository.save(usuario);
+    }
+
     public Pelicula actualizarPelicula(Long id, Pelicula pelicula){
         if (!peliculaRepository.existsById(id))
             return null;
