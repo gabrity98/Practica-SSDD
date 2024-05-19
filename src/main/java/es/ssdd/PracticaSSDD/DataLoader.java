@@ -23,18 +23,5 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Usuario admin = new Usuario();
-        admin.setNombre("admin");
-        admin.setEmail("admin@test.com");
-
-        usuarioRepository.save(admin);
-
-        Pelicula pelicula = new Pelicula();
-        pelicula.setNombre("Dune");
-        pelicula.setDirector("Denis Villeneuve");
-        pelicula.setGenero("Ciencia Ficcion");
-        pelicula.setPuntuacion(8.5);
-
-        peliculaRepository.save(pelicula);
     }
 }
